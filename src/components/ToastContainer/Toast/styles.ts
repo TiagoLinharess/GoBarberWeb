@@ -1,10 +1,9 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import styled, { css } from 'styled-components';
 import { animated } from 'react-spring';
 
 interface ContainerProps {
   type?: 'success' | 'error' | 'info';
-  hasDescripton: boolean;
+  hasDescription: number;
 }
 
 const toastTypeVariations = {
@@ -44,13 +43,13 @@ export const Container = styled(animated.div)<ContainerProps>`
 
   div {
     flex: 1;
-  }
 
-  p {
-    margin-top: 4px;
-    font-size: 14px;
-    opacity: 0.8;
-    line-height: 20px;
+    p {
+      margin-top: 4px;
+      font-size: 14px;
+      opacity: 0.8;
+      line-height: 20px;
+    }
   }
 
   button {
@@ -64,7 +63,7 @@ export const Container = styled(animated.div)<ContainerProps>`
   }
 
   ${props =>
-    !props.hasDescripton &&
+    !props.hasDescription &&
     css`
       align-items: center;
 

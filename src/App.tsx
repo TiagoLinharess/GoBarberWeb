@@ -12,6 +12,7 @@ const App: React.FC = () => (
     <AppProvider>
       <Routes />
     </AppProvider>
+
     <GlobalStyle />
   </Router>
 );

@@ -1,20 +1,19 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
 import {
-  RouteProps as ReactRouteProps,
   Route as ReactDOMRoute,
+  RouteProps as ReactDOMRouteProps,
   Redirect,
 } from 'react-router-dom';
 
 import { useAuth } from '../hooks/auth';
 
-interface RouteProps extends ReactRouteProps {
-  isPivate?: boolean;
+interface RouteProps extends ReactDOMRouteProps {
+  isPrivate?: boolean;
   component: React.ComponentType;
 }
 
 const Route: React.FC<RouteProps> = ({
-  isPivate = false,
+  isPrivate = false,
   component: Component,
   ...rest
 }) => {
@@ -24,12 +23,12 @@ const Route: React.FC<RouteProps> = ({
     <ReactDOMRoute
       {...rest}
       render={({ location }) => {
-        return isPivate === !!user ? (
+        return isPrivate === !!user ? (
           <Component />
         ) : (
           <Redirect
             to={{
-              pathname: isPivate ? '/' : '/dashboard',
+              pathname: isPrivate ? '/' : '/dashboard',
               state: { from: location },
             }}
           />

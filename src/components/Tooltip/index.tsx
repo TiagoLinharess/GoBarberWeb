@@ -1,14 +1,13 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
 
 import { Container } from './styles';
 
-interface TolltipProps {
+interface TooltipProps {
   title: string;
   className?: string;
 }
 
-const Tooltip: React.FC<TolltipProps> = ({
+const Tooltip: React.FC<TooltipProps> = ({
   title,
   className = '',
   children,

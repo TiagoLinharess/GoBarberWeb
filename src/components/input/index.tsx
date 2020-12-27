@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import React, {
   InputHTMLAttributes,
   useEffect,
@@ -14,13 +13,21 @@ import { Container, Error } from './styles';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
-  icon: React.ComponentType<IconBaseProps>;
+  containerStyle?: object;
+  icon?: React.ComponentType<IconBaseProps>;
 }
 
-const Input: React.FC<InputProps> = ({ name, icon: Icon, ...rest }) => {
+const Input: React.FC<InputProps> = ({
+  name,
+  containerStyle = {},
+  icon: Icon,
+  ...rest
+}) => {
   const inputRef = useRef<HTMLInputElement>(null);
+
   const [isFocused, setIsFocused] = useState(false);
   const [isFilled, setIsFilled] = useState(false);
+
   const { fieldName, defaultValue, error, registerField } = useField(name);
 
   const handleInputFocus = useCallback(() => {
@@ -30,11 +37,7 @@ const Input: React.FC<InputProps> = ({ name, icon: Icon, ...rest }) => {
   const handleInputBlur = useCallback(() => {
     setIsFocused(false);
 
-    if (inputRef.current?.value) {
-      setIsFilled(true);
-    } else {
-      setIsFilled(false);
-    }
+    setIsFilled(!!inputRef.current?.value);
   }, []);
 
   useEffect(() => {
@@ -46,7 +49,13 @@ const Input: React.FC<InputProps> = ({ name, icon: Icon, ...rest }) => {
   }, [fieldName, registerField]);
 
   return (
-    <Container isErrored={!!error} isFilled={isFilled} isFocused={isFocused}>
+    <Container
+      style={containerStyle}
+      isErrored={!!error}
+      isFilled={isFilled}
+      isFocused={isFocused}
+      data-testid="input-container"
+    >
       {Icon && <Icon size={20} />}
       <input
         onFocus={handleInputFocus}

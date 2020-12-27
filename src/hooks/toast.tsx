@@ -1,8 +1,6 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable no-unused-expressions */
-/* eslint-disable @typescript-eslint/ban-types */
 import React, { createContext, useCallback, useContext, useState } from 'react';
 import { uuid } from 'uuidv4';
+
 import ToastContainer from '../components/ToastContainer';
 
 export interface ToastMessage {
@@ -33,13 +31,13 @@ const ToastProvider: React.FC = ({ children }) => {
         description,
       };
 
-      setMessages(oldMessages => [...oldMessages, toast]);
+      setMessages((state) => [...state, toast]);
     },
     [],
   );
 
   const removeToast = useCallback((id: string) => {
-    setMessages(state => state.filter(message => message.id !== id));
+    setMessages((state) => state.filter((message) => message.id !== id));
   }, []);
 
   return (

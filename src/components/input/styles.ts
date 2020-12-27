@@ -1,8 +1,7 @@
 import styled, { css } from 'styled-components';
 
-import Tolltip from '../Tooltip';
+import Tooltip from '../Tooltip';
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 interface ContainerProps {
   isFocused: boolean;
   isFilled: boolean;
@@ -25,20 +24,20 @@ export const Container = styled.div<ContainerProps>`
     margin-top: 8px;
   }
 
-  ${props =>
+  ${(props) =>
     props.isErrored &&
     css`
       border-color: #c53030;
     `}
 
-  ${props =>
+  ${(props) =>
     props.isFocused &&
     css`
       color: #ff9000;
       border-color: #ff9000;
     `}
 
-  ${props =>
+  ${(props) =>
     props.isFilled &&
     css`
       color: #ff9000;
@@ -60,11 +59,12 @@ export const Container = styled.div<ContainerProps>`
   }
 `;
 
-export const Error = styled(Tolltip)`
+export const Error = styled(Tooltip)`
   height: 20px;
   margin-left: 16px;
+
   svg {
-    margin-right: 0;
+    margin: 0;
   }
 
   span {
